@@ -59,6 +59,8 @@ print(f'processing {n_exch} addresses')
 
 new_addr = [addr for addr in user_coin_addresses if addr not in local_addresses]
 
+n_new = len(new_addr)
+
 InjectAddresses(new_addr)
 
-print(f'new addresses processed')
+print(f'new addresses processed: {n_new}')
