@@ -1,0 +1,7 @@
+mysql-connector-python==8.0.25
+protobuf==3.17.3
+six==1.16.0
+mysql-connector-python==8.0.25
+protobuf==3.17.3
+six==1.16.0
+tqdm==4.61.2
