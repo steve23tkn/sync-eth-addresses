@@ -44,7 +44,7 @@ def RetrieveAddressesLocal():
 def InjectAddresses(addresses):
     mycursor = localdb.cursor()
     for addr in tqdm(addresses):
-        sql = f"insert into addresses (address) values ('{addr}')"
+        sql = f"insert into addresses (created, address) values (1626789105, '{addr}')"
         mycursor.execute(sql)
     localdb.commit() 
 
