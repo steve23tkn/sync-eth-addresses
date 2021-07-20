@@ -25,7 +25,7 @@ def RetrieveAddressesExchange():
     mycursor.execute(sql)
     rows = mycursor.fetchall()
 
-    if rows>0:
+    if len(rows)>0:
         rows = flatten(rows)
 
     return rows # type: list, len: 18072
@@ -36,7 +36,7 @@ def RetrieveAddressesLocal():
     mycursor.execute(sql)
     rows = mycursor.fetchall()
 
-    if rows>0:
+    if len(rows)>0:
         rows = flatten(rows)
 
     return rows # type: list, 
