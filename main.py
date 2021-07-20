@@ -16,18 +16,29 @@ localdb = mysql.connector.connect(
     database=cf.local_db
 )
 
+def flatten(t):
+    return [item for sublist in t for item in sublist]
+
 def RetrieveAddressesExchange():
     mycursor = coredb.cursor()
-    sql = f"select * from user_coin_addresses where coin='eth'"
+    sql = f"select address from user_coin_addresses where coin='eth'"
     mycursor.execute(sql)
     rows = mycursor.fetchall()
+
+    if rows>0:
+        rows = flatten(rows)
+
     return rows # type: list, len: 18072
 
 def RetrieveAddressesLocal():
     mycursor = localdb.cursor()
-    sql = f"select * from addresses"
+    sql = f"select address from addresses"
     mycursor.execute(sql)
     rows = mycursor.fetchall()
+
+    if rows>0:
+        rows = flatten(rows)
+
     return rows # type: list, 
 
 def InjectAddresses(addresses):
@@ -46,7 +57,7 @@ n_local = len(local_addresses)
 
 print(f'processing {n_exch} addresses')
 
-new_addr = [addr for addr in user_coin_addresses if addr in local_addresses]
+new_addr = [addr for addr in user_coin_addresses if addr not in local_addresses]
 
 InjectAddresses(new_addr)
 
